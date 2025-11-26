@@ -1,4 +1,4 @@
-import { Block, Container, Button, Title, Text, Stack } from '@ui8kit/core'
+import { Block, Container, Button, Title, Text, Stack } from '@ui8kit/ui'
 import { ThemeProvider, useTheme, lesseUITheme } from '@ui8kit/core' // skyOSTheme, modernUITheme, lesseUITheme
 
 function AppContent() {

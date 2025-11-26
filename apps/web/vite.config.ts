@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       dedupe: ['react', 'react-dom'],
       alias: {
         '@': path.resolve(__dirname, './src'),
-        '@ui8kit/core': path.resolve(__dirname, './src/components/ui/index.ts')
+        '@ui8kit/ui': path.resolve(__dirname, './src/components/ui/index.ts')
       }
     },
     server: {
