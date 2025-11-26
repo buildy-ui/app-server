@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "repository": "https://github.com/buildy-ui/app-server.git",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
