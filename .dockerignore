@@ -1,0 +1,64 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+dist
+**/dist
+build
+**/build
+.next
+.nuxt
+
+# Git
+.git
+.gitignore
+.gitmodules
+
+# IDE and editors
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun-debug.log*
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage
+.nyc_output
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# Docker files (no need to copy into container)
+Dockerfile*
+docker-compose*.yml
+.docker
+
+# Documentation (optional - comment out if needed in container)
+*.md
+docs
+
+# Turbo cache
+.turbo
+
+# TypeScript build info
+*.tsbuildinfo
+

@@ -16,6 +16,12 @@ export default defineConfig(({ mode }) => {
         '@ui8kit/core': path.resolve(__dirname, './src/components/ui/index.ts')
       }
     },
-    server: { port: 5000 }
+    server: {
+      port: 5173,
+      host: true,  // Allow external connections (for Docker)
+      watch: {
+        usePolling: true  // Required for Docker volume mounts
+      }
+    }
   }
 })

@@ -1,0 +1,36 @@
+{
+  "name": "UI8Kit Development",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  "service": "ui8kit-dev",
+  "workspaceFolder": "/app",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker",
+        "formulahendry.auto-rename-tag",
+        "dsznajder.es7-react-js-snippets"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "tailwindCSS.experimental.classRegex": [
+          ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+        ]
+      }
+    }
+  },
+  
+  "forwardPorts": [5173, 5432, 6379, 8080],
+  
+  "postCreateCommand": "bun install",
+  
+  "remoteUser": "devuser",
+  
+  "shutdownAction": "stopCompose"
+}
+
