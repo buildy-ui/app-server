@@ -3,7 +3,6 @@ export { Block, type BlockProps } from "./Block";
 export { Container, type ContainerProps } from "./Container";
 export { Stack, type StackProps } from "./Stack";
 export { Group, type GroupProps } from "./Group";
-export { Grid, type GridProps } from "./Grid";
 export { Box, type BoxProps } from "./Box";
 
 // Typography Components  

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* 
+ * Tailwind v4 Content Detection
+ * All classes from UI8Kit variants are statically defined in:
+ * - src/variants/*.ts (CVA definitions)
+ * - src/components/ui/*.tsx (static className strings)
+ * 
+ * twsx.ts uses inline styles (not className), so JIT is not needed for it.
+ * RSD/StyleX injects styles directly into the DOM.
+ */
+
+@source "../src/**/*.{ts,tsx}";
+
 :root {
   --background: hsl(0 0% 97.2549%);
   --foreground: hsl(240 3.3333% 11.7647%);

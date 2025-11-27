@@ -30,6 +30,14 @@ export interface BadgeProps
   dot?: boolean;
 }
 
+// Dot indicator - pure presentational
+const BadgeDot = () => (
+  <span 
+    data-class="badge-dot" 
+    className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current" 
+  />
+);
+
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   ({ 
     children, 
@@ -57,34 +65,27 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
         ref={ref}
         data-class="badge"
         className={cn(
+          // Base styles (static)
           'inline-flex items-center font-semibold transition-colors',
           'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+          // Variants (CVA)
           badgeSizeVariants({ size }),
           badgeStyleVariants({ variant }),
-          spacingVariants({ m, mx, my }),
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
+          spacingVariants({ m, mx, my }),
           borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
           className
         )}
         {...props}
       >
-        {dot && (
-          <span 
-            data-class="badge-dot" 
-            className="mr-1 h-1.5 w-1.5 rounded-full bg-current" 
-          />
-        )}
+        {dot && <BadgeDot />}
         {leftSection && (
-          <span data-class="badge-left-section" className="mr-1">
-            {leftSection}
-          </span>
+          <span data-class="badge-left-section" className="mr-1.5">{leftSection}</span>
         )}
         {children}
         {rightSection && (
-          <span data-class="badge-right-section" className="ml-1">
-            {rightSection}
-          </span>
+          <span data-class="badge-right-section" className="ml-1.5">{rightSection}</span>
         )}
       </div>
     );

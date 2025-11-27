@@ -20,7 +20,7 @@ import {
 
 export interface ButtonProps 
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    Pick<VariantSpacingProps, 'm' | 'mx' | 'my'>,
+    Pick<VariantSpacingProps, 'm' | 'mx' | 'my' | 'mr'>,
     RoundedProps,
     ShadowProps,
     Pick<VariantLayoutProps, 'w'>,
@@ -32,8 +32,15 @@ export interface ButtonProps
   rightSection?: ReactNode;
   loading?: boolean;
   disabled?: boolean;
-  mr?: 1 | 2 | 3 | 4 | 0;
 }
+
+// Loading spinner - pure presentational
+const ButtonSpinner = () => (
+  <span 
+    data-class="button-spinner"
+    className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" 
+  />
+);
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ 
@@ -46,8 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     loading = false,
     disabled = false,
     // Spacing props  
-    m, mx, my,
-    mr = 1,
+    m, mx, my, mr,
     // Layout props
     w,
     // Content props
@@ -62,36 +68,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-class="button"
         disabled={disabled || loading}
         className={cn(
-          'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
+          // Base styles (static)
+          'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium',
+          'transition-colors disabled:pointer-events-none disabled:opacity-50',
+          '[&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0',
+          'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          // Variants (CVA)
           buttonSizeVariants({ size }),
           buttonStyleVariants({ variant }),
           buttonContentAlignVariants({ contentAlign }),
-          spacingVariants({ m, mx, my }),
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
+          spacingVariants({ m, mx, my, mr }),
           layoutVariants({ w }),
-          `mr-${mr}`,
+          // State modifiers
           loading && 'cursor-wait',
           className
         )}
         {...props}
       >
-        {loading && (
-          <div 
-            data-class="button-loading-spinner"
-            className={`mr-${mr} h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent`} 
-          />
-        )}
+        {loading && <ButtonSpinner />}
         {!loading && leftSection && (
-          <span data-class="button-left-section" className={`mr-${mr}`}>
-            {leftSection}
-          </span>
+          <span data-class="button-left-section" className="mr-2">{leftSection}</span>
         )}
         {children}
         {!loading && rightSection && (
-          <span data-class="button-right-section" className={`ml-${mr}`}>
-            {rightSection}
-          </span>
+          <span data-class="button-right-section" className="ml-2">{rightSection}</span>
         )}
       </button>
     );
