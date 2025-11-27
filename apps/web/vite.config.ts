@@ -1,26 +1,17 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
-export default defineConfig(({ mode }) => {
-  // loadEnv is imported but not used in this configuration, which is acceptable.
-  // The 'mode' parameter is also not directly used in the returned config object, which is fine.
-
+export default defineConfig(() => {
   return {
-    plugins: [react()],
+    plugins: [react(), tailwindcss()],
     resolve: {
       preserveSymlinks: true,
       dedupe: ['react', 'react-dom'],
       alias: {
         '@': path.resolve(__dirname, './src'),
         '@ui8kit/ui': path.resolve(__dirname, './src/components/ui/index.ts')
-      }
-    },
-    server: {
-      port: 5173,
-      host: true,  // Allow external connections (for Docker)
-      watch: {
-        usePolling: true  // Required for Docker volume mounts
       }
     }
   }
