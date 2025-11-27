@@ -1,7 +1,6 @@
 import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
-import { cn } from "@ui8kit/core";
-import { Box as BaseBox } from "@ui8kit/core";
+import { cn } from "../../lib/utils";
 import {
   spacingVariants,
   roundedVariants,
@@ -19,7 +18,7 @@ import {
   type BorderProps,
   type VariantFlexProps,
   type AspectRatioProps
-} from "@ui8kit/core";
+} from "../../variants";
 
 export interface BoxProps 
   extends VariantSpacingProps,
@@ -60,36 +59,30 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     aspect,
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+
     return (
-      <BaseBox
-        component={component}
+      <Element
         ref={ref}
+        data-class="box"
         className={cn(
-          // Apply spacing variants
           spacingVariants({
             m, mx, my, mt, mr, mb, ml,
             p, px, py, pt, pr, pb, pl
           }),
-          // Apply rounded variants
           roundedVariants({ rounded }),
-          // Apply shadow variants
           shadowVariants({ shadow }),
-          // Apply color variants
           colorVariants({ bg, c, borderColor }),
-          // Apply layout variants
           layoutVariants({ display, maxW, w, h, minH, position, z, overflow }),
-          // Apply border variants
           borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
-          // Apply flex variants
           flexVariants({ direction, align, justify, wrap, gap }),
-          // Apply aspect ratio variants
           aspectRatioVariants({ aspect }),
           className
         )}
         {...props}
       >
         {children}
-      </BaseBox>
+      </Element>
     );
   }
 );

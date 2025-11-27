@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Container as BaseContainer,
   spacingVariants,
   colorVariants,
   containerSizeVariants,
@@ -9,9 +9,8 @@ import {
   type VariantSpacingProps,
   type ColorProps,
   type ContainerSizingProps,
-  type TextAlignProps,
-  cn
-} from "@ui8kit/core";
+  type TextAlignProps
+} from "../../variants";
 
 export interface ContainerProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -44,19 +43,16 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
     borderColor,
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+
     return (
-      <BaseContainer
+      <Element
         ref={ref}
-        component={component}
         data-class="container"
         className={cn(
-          // Size variant
           containerSizeVariants({ size }),
-          // Centering
           centered && 'mx-auto',
-          // Fluid
           fluid && 'max-w-none',
-          // Apply CVA variants
           textAlignVariants({ ta }),
           spacingVariants({ p, px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),
           colorVariants({ bg, c, borderColor }),
@@ -65,7 +61,7 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
         {...props}
       >
         {children}
-      </BaseContainer>
+      </Element>
     );
   }
 );

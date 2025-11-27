@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Badge as BaseBadge,
   spacingVariants,
   roundedVariants,
   shadowVariants,
@@ -14,8 +14,7 @@ import {
   type BorderProps,
   type BadgeSizeProps,
   type BadgeStyleProps,
-  cn
-} from "@ui8kit/core";
+} from "../../variants";
 
 export interface BadgeProps 
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -54,14 +53,12 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
     ...props 
   }, ref) => {
     return (
-      <BaseBadge
+      <div
         ref={ref}
         data-class="badge"
         className={cn(
-          // Base badge styles
           'inline-flex items-center font-semibold transition-colors',
           'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
-          // Apply CVA variants
           badgeSizeVariants({ size }),
           badgeStyleVariants({ variant }),
           spacingVariants({ m, mx, my }),
@@ -89,7 +86,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
             {rightSection}
           </span>
         )}
-      </BaseBadge>
+      </div>
     );
   }
 );

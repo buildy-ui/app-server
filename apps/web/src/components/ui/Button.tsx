@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Button as BaseButton,
   spacingVariants,
   roundedVariants,
   shadowVariants,
@@ -15,9 +15,8 @@ import {
   type VariantLayoutProps,
   type ButtonSizeProps,
   type ButtonStyleProps,
-  type ButtonContentAlignProps,
-  cn
-} from "@ui8kit/core";
+  type ButtonContentAlignProps
+} from "../../variants";
 
 export interface ButtonProps 
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -58,14 +57,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ...props 
   }, ref) => {
     return (
-      <BaseButton
+      <button
         ref={ref}
         data-class="button"
         disabled={disabled || loading}
         className={cn(
-          // Base button styles
           'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-          // Apply CVA variants
           buttonSizeVariants({ size }),
           buttonStyleVariants({ variant }),
           buttonContentAlignVariants({ contentAlign }),
@@ -73,9 +70,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
           layoutVariants({ w }),
-          // Apply mr spacing for icons
           `mr-${mr}`,
-          // Loading state
           loading && 'cursor-wait',
           className
         )}
@@ -98,7 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {rightSection}
           </span>
         )}
-      </BaseButton>
+      </button>
     );
   }
 );

@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Block as BaseBlock,
   spacingVariants,
   colorVariants,
   layoutVariants,
@@ -13,9 +13,8 @@ import {
   type VariantLayoutProps,
   type RoundedProps,
   type ShadowProps,
-  type BorderProps,
-  cn
-} from "@ui8kit/core";
+  type BorderProps
+} from "../../variants";
 
 export interface BlockProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -59,16 +58,14 @@ export const Block = forwardRef<HTMLElement, BlockProps>(
     borderRight,
     ...props 
   }, ref) => {
-    // Use variant as component if no component is explicitly provided
     const elementType = component || variant;
+    const Element = elementType as ElementType;
 
     return (
-      <BaseBlock
+      <Element
         ref={ref}
-        component={elementType}
         data-class="block"
         className={cn(
-          // Apply variants
           spacingVariants({ p, px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),
           colorVariants({ bg, c, borderColor }),
           layoutVariants({ w, h, minH, position }),
@@ -80,7 +77,7 @@ export const Block = forwardRef<HTMLElement, BlockProps>(
         {...props}
       >
         {children}
-      </BaseBlock>
+      </Element>
     );
   }
 );

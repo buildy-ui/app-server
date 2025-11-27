@@ -1,17 +1,15 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Grid as BaseGrid,
-  Box as BaseBox,
   gridVariants,
   spacingVariants,
   colorVariants,
   layoutVariants,
   type VariantSpacingProps,
   type ColorProps,
-  type VariantLayoutProps,
-  cn
-} from "@ui8kit/core";
+  type VariantLayoutProps
+} from "../../variants";
 
 // Main Grid component interface
 export interface GridProps 
@@ -46,27 +44,23 @@ const Grid = forwardRef<HTMLElement, GridProps>(
     ...props 
   }, ref) => {
     return (
-      <BaseGrid
-        ref={ref}
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        data-class="grid"
         className={cn(
-          // Apply grid variants
           gridVariants({ cols, gap, align, justify }),
-          // Apply spacing variants
           spacingVariants({
             p, px, py, pt, pb, pl, pr,
             m, mx, my, mt, mb, ml, mr
           }),
-          // Apply color variants
           colorVariants({ bg, c }),
-          // Apply layout variants  
           layoutVariants({ w, h }),
           className
         )}
-        data-class="grid"
         {...props}
       >
         {children}
-      </BaseGrid>
+      </div>
     );
   }
 );
@@ -88,11 +82,10 @@ export interface GridColProps {
 const GridCol = forwardRef<HTMLElement, GridColProps>(
   ({ children, className, span, start, end, order, ...props }, ref) => {
     return (
-      <BaseBox
-        component="div"
-        ref={ref}
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        data-class="grid-col"
         className={cn(
-          // Span utility classes
           span === 1 && 'col-span-1',
           span === 2 && 'col-span-2',
           span === 3 && 'col-span-3',
@@ -107,8 +100,6 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
           span === 12 && 'col-span-12',
           span === 'auto' && 'col-auto',
           span === 'full' && 'col-span-full',
-          
-          // Start utility classes
           start === 1 && 'col-start-1',
           start === 2 && 'col-start-2',
           start === 3 && 'col-start-3',
@@ -123,8 +114,6 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
           start === 12 && 'col-start-12',
           start === 13 && 'col-start-13',
           start === 'auto' && 'col-start-auto',
-          
-          // End utility classes
           end === 1 && 'col-end-1',
           end === 2 && 'col-end-2',
           end === 3 && 'col-end-3',
@@ -139,8 +128,6 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
           end === 12 && 'col-end-12',
           end === 13 && 'col-end-13',
           end === 'auto' && 'col-end-auto',
-          
-          // Order utility classes
           order === 1 && 'order-1',
           order === 2 && 'order-2',
           order === 3 && 'order-3',
@@ -156,14 +143,12 @@ const GridCol = forwardRef<HTMLElement, GridColProps>(
           order === 'first' && 'order-first',
           order === 'last' && 'order-last',
           order === 'none' && 'order-none',
-          
           className
         )}
-        data-class="grid-col"
         {...props}
       >
         {children}
-      </BaseBox>
+      </div>
     );
   }
 );

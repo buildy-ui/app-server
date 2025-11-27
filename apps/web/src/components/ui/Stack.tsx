@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Stack as BaseStack,
   spacingVariants,
   colorVariants,
   layoutVariants,
@@ -11,9 +11,8 @@ import {
   type ColorProps,
   type VariantLayoutProps,
   type VariantFlexProps,
-  type TextAlignProps,
-  cn
-} from "@ui8kit/core";
+  type TextAlignProps
+} from "../../variants";
 
 export interface StackProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -46,13 +45,13 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     h,
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+
     return (
-      <BaseStack
+      <Element
         ref={ref}
-        component={component}
         data-class="stack"
         className={cn(
-          // Apply CVA variants
           flexVariants({ gap, align, justify }),
           spacingVariants({ p, px, py, m, mx, my }),
           colorVariants({ bg, c }),
@@ -63,7 +62,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
         {...props}
       >
         {children}
-      </BaseStack>
+      </Element>
     );
   }
 );

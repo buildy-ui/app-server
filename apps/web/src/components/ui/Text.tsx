@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Box as BaseBox,
   spacingVariants,
   colorVariants,
   layoutVariants,
@@ -19,9 +19,8 @@ import {
   type TextAlignProps,
   type LeadingProps,
   type TypographyModifierProps,
-  type TrackingProps,
-  cn
-} from "@ui8kit/core";
+  type TrackingProps
+} from "../../variants";
 
 export interface TextProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -59,13 +58,13 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     w,
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+
     return (
-      <BaseBox
+      <Element
         ref={ref}
-        as={component}
         data-class="text"
         className={cn(
-          // Apply CVA variants
           textSizeVariants({ size }),
           fontWeightVariants({ fw }),
           textAlignVariants({ ta }),
@@ -80,7 +79,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
         {...props}
       >
         {children}
-      </BaseBox>
+      </Element>
     );
   }
 );

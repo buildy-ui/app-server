@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Image as BaseImage,
   spacingVariants,
   roundedVariants,
   shadowVariants,
@@ -14,9 +14,8 @@ import {
   type VariantLayoutProps,
   type ImageFitProps,
   type ImagePositionProps,
-  type AspectRatioProps,
-  cn
-} from "@ui8kit/core";
+  type AspectRatioProps
+} from "../../variants";
 
 export interface ImageProps 
   extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'width' | 'height'>,
@@ -63,7 +62,7 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
     };
 
     return (
-      <BaseImage
+      <img
         ref={ref}
         data-class="image"
         src={src}
@@ -72,11 +71,8 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
         height={height}
         onError={handleError}
         className={cn(
-          // Base image styles
           'block',
-          // Placeholder background
           withPlaceholder && 'bg-muted',
-          // Apply CVA variants
           imageFitVariants({ fit }),
           imagePositionVariants({ position }),
           aspectRatioVariants({ aspect }),

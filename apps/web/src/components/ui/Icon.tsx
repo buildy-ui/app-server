@@ -1,15 +1,14 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Icon as BaseIcon,
   spacingVariants,
   colorVariants,
   iconSizeVariants,
   type VariantSpacingProps,
   type ColorProps,
-  type IconSizingProps,
-  cn
-} from "@ui8kit/core";
+  type IconSizingProps
+} from "../../variants";
 
 export interface IconProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -28,44 +27,44 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
     component = 'span',
     size = 'sm',
     lucideIcon: LucideIcon,
-    // Spacing props  
     m, mx, my,
-    // Color props
     c = 'foreground',
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+    const { 'aria-hidden': ariaHidden, role, ...rest } = props;
+
+    const baseClasses = cn(
+      'inline-block flex items-center justify-center',
+      iconSizeVariants({ size }),
+      spacingVariants({ m, mx, my }),
+      colorVariants({ c }),
+      className
+    );
+
     return (
-      <BaseIcon
+      <Element
         ref={ref}
-        component={component}
         data-class="icon"
-        className={cn(
-          // Base icon styles
-          'inline-block flex items-center justify-center',
-          // Apply CVA variants
-          iconSizeVariants({ size }),
-          spacingVariants({ m, mx, my }),
-          colorVariants({ c }),
-          className
-        )}
-        // prevent non-DOM props leakage
-        aria-hidden={props['aria-hidden']}
-        role={props.role}
+        className={baseClasses}
+        aria-hidden={ariaHidden}
+        role={role}
+        {...rest}
       >
         {LucideIcon ? (
-          // Render Lucide icon as child element to avoid prop leakage to DOM
           <span>
             <LucideIcon
               className={cn(
                 iconSizeVariants({ size }),
                 spacingVariants({ m, mx, my }),
-                colorVariants({ c }),
-                className
+                colorVariants({ c })
               )}
             />
           </span>
-        ) : children}
-      </BaseIcon>
+        ) : (
+          children
+        )}
+      </Element>
     );
   }
 );

@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Box as BaseBox,
   spacingVariants,
   colorVariants,
   layoutVariants,
@@ -19,9 +19,8 @@ import {
   type TextAlignProps,
   type LeadingProps,
   type TypographyModifierProps,
-  type TrackingProps,
-  cn
-} from "@ui8kit/core";
+  type TrackingProps
+} from "../../variants";
 
 export interface TitleProps 
   extends React.HTMLAttributes<HTMLHeadingElement>,
@@ -59,15 +58,14 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
   }, ref) => {
     const headingTag = `h${order}` as ElementType;
 
+    const Heading = headingTag as ElementType;
+
     return (
-      <BaseBox
+      <Heading
         ref={ref}
-        as={headingTag}
         data-class="title"
         className={cn(
-          // Base title styles
           'font-semibold tracking-tight',
-          // Apply CVA variants
           textSizeVariants({ size }),
           fontWeightVariants({ fw }),
           textAlignVariants({ ta }),
@@ -82,7 +80,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
         {...props}
       >
         {children}
-      </BaseBox>
+      </Heading>
     );
   }
 );

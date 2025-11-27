@@ -1,7 +1,7 @@
-import type { ReactNode, ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Box as BaseBox,
   spacingVariants,
   colorVariants,
   layoutVariants,
@@ -9,9 +9,8 @@ import {
   type VariantSpacingProps,
   type ColorProps,
   type VariantLayoutProps,
-  type VariantFlexProps,
-  cn
-} from "@ui8kit/core";
+  type VariantFlexProps
+} from "../../variants";
 
 export interface GroupProps 
   extends React.HTMLAttributes<HTMLElement>,
@@ -47,18 +46,17 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
     h,
     ...props 
   }, ref) => {
+    const Element = component as ElementType;
+
     return (
-      <BaseBox
+      <Element
         ref={ref}
-        component={component}
         data-class="group"
         className={cn(
-          // Apply CVA variants - Group is always flex-row
           flexVariants({ gap, align, justify, wrap }),
           spacingVariants({ p, px, py, m, mx, my }),
           colorVariants({ bg, c }),
           layoutVariants({ w, h }),
-          // Group specific styles
           grow && 'flex-1',
           preventGrowOverflow && 'min-w-0',
           className
@@ -66,7 +64,7 @@ export const Group = forwardRef<HTMLElement, GroupProps>(
         {...props}
       >
         {children}
-      </BaseBox>
+      </Element>
     );
   }
 );

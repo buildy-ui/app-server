@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
+import { cn } from "../../lib/utils";
 import {
-  Card as BaseCard,
-  Stack,
   spacingVariants,
   roundedVariants,
   shadowVariants,
@@ -16,9 +15,8 @@ import {
   type ColorProps,
   type BorderProps,
   type VariantLayoutProps,
-  type TextSizeProps,
-  cn
-} from "@ui8kit/core";
+  type TextSizeProps
+} from "../../variants";
 
 // Main Card component interface
 interface CardProps 
@@ -60,13 +58,11 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     ...props 
   }, ref) => {
     return (
-      <BaseCard
+      <div
         ref={ref}
         data-class="card"
         className={cn(
-          // Base card styles
           'text-card-foreground transition-colors',
-          // Apply CVA variants
           spacingVariants({ p: p || 'md', px, py, pt, pb, pl, pr, m, mx, my, mt, mb, ml, mr }),
           roundedVariants({ rounded }),
           shadowVariants({ shadow }),
@@ -74,7 +70,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           borderVariants({ border, borderTop, borderBottom, borderLeft, borderRight }),
           colorVariants({ borderColor }),
           layoutVariants({ w, h }),
-          // Variant-specific styles
           {
             'border-border': variant === 'default',
             'border-border shadow-none': variant === 'outlined',
@@ -85,7 +80,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         {...props}
       >
         {children}
-      </BaseCard>
+      </div>
     );
   }
 );
@@ -109,7 +104,7 @@ const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     ...props 
   }, ref) => {
     return (
-      <Stack
+      <div
         ref={ref}
         data-class="card-header"
         className={cn(
@@ -120,7 +115,7 @@ const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
         {...props}
       >
         {children}
-      </Stack>
+      </div>
     );
   }
 );
