@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-export const flexVariants = cva("", {
+export const flexVariants = cva("flex", {
   variants: {
     // Flex direction
     direction: {

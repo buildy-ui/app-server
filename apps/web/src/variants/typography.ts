@@ -35,7 +35,7 @@ export const fontWeightVariants = cva("", {
   }
 });
 
-// Text alignment variants
+// Text alignment variants (no default - inherits from parent)
 export const textAlignVariants = cva("", {
   variants: {
     ta: {
@@ -44,9 +44,6 @@ export const textAlignVariants = cva("", {
       right: "text-right",
       justify: "text-justify"
     }
-  },
-  defaultVariants: {
-    ta: "left"
   }
 });
 

@@ -19,7 +19,7 @@ export interface StackProps
     Pick<VariantSpacingProps, 'p' | 'px' | 'py' | 'm' | 'mx' | 'my'>,
     Pick<ColorProps, 'bg' | 'c'>,
     Pick<VariantLayoutProps, 'w' | 'h'>,
-    Pick<VariantFlexProps, 'gap' | 'align' | 'justify'>,
+    Pick<VariantFlexProps, 'gap' | 'align' | 'justify' | 'direction'>,
     TextAlignProps {
   children: ReactNode;
   component?: ElementType;
@@ -31,7 +31,8 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
     className,
     component = 'div',
     gap = 'md',
-    align = 'stretch',
+    direction = 'col',
+    align = 'start',
     justify = 'start',
     ta,
     // Spacing props
@@ -52,7 +53,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(
         ref={ref}
         data-class="stack"
         className={cn(
-          flexVariants({ gap, align, justify }),
+          flexVariants({ gap, align, justify, direction }),
           spacingVariants({ p, px, py, m, mx, my }),
           colorVariants({ bg, c }),
           layoutVariants({ w, h }),

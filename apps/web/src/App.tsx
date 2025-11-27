@@ -1,4 +1,4 @@
-import { Block, Container, Button, Title, Text, Box } from "@ui8kit/ui"
+import { Block, Container, Button, Title, Text, Stack } from "@ui8kit/ui"
 import { ThemeProvider, useTheme } from "@/components/ThemeProvider"
 
 // LesseUI Theme
@@ -22,15 +22,15 @@ function AppContent() {
   const { toggleDarkMode, isDarkMode } = useTheme()
 
   return (
-    <Block variant="section" py="xl" w="full">
-      <Container>
-        <Box gap="lg" align="center">
+    <Block variant="section" py="xl">
+      <Container ta="center">
+        <Stack gap="lg" align="center">
           <Title size="5xl">Welcome to UI8Kit</Title>
           <Text>Create beautiful web applications with ease using our UI components</Text>
-          <Button variant={isDarkMode ? 'primary' : 'secondary'} onClick={toggleDarkMode}>
-            {!isDarkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          <Button variant={isDarkMode ? "primary" : "secondary"} onClick={toggleDarkMode}>
+            {!isDarkMode ? "🌙 Dark Mode" : "☀️ Light Mode"}
           </Button>
-        </Box>
+        </Stack>
       </Container>
     </Block>
   )

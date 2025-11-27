@@ -44,7 +44,7 @@ export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
     order = 1,
     size = 'lg',
     fw = 'semibold',
-    ta = 'left',
+    ta,
     leading = 'normal',
     tracking,
     truncate = false,

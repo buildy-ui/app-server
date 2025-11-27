@@ -44,7 +44,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     component = 'p',
     size = 'md',
     fw = 'normal',
-    ta = 'left',
+    ta,
     leading = 'normal',
     tracking,
     truncate = false,
