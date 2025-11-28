@@ -1,5 +1,5 @@
-import { Block, Container, Button, Title, Text, Stack } from "@ui8kit/ui"
-import { ThemeProvider, useTheme } from "@/components/ThemeProvider"
+import { Block, Container, Button, Title, Text, Stack } from "@ui8kit/core"
+import { ThemeProvider, useTheme } from "@/providers/theme"
 
 // LesseUI Theme
 export const lesseUITheme = {

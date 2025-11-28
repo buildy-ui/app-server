@@ -4,7 +4,6 @@ build
 .turbo/
 .manual/
 .project/
-.cursor/
 .prompt/
 .cursorignore
 bun.lock
